@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NavbarHeader = ({ storeLetters, showBookMarked }) => {
+const NavbarHeader = ({ storeLetters, showBookMarked, getLetters }) => {
   return (
     <div className='bg-dark py-3'>
       <div className='container'>
@@ -20,7 +20,11 @@ const NavbarHeader = ({ storeLetters, showBookMarked }) => {
           <i id='playBtn' className='fas fa-play float-right pt-1 pr-2' />
         </a>
         <a href='/'>
-          <div id='getBookMark' className='float-right pr-2'>
+          <div
+            id='getBookMark'
+            className='float-right pr-2'
+            onClick={getLetters}
+          >
             getBookmark
           </div>
         </a>

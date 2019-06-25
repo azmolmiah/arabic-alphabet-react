@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LetterItem from './LetterItem';
 import Spinner from '../layout/Spinner';
-import PropTypes from 'prop-types';
 import uniqid from 'uniqid';
+import LetterContext from '../../context/letters/letterContext';
 
-const Letters = ({ letters, loading }) => {
+const Letters = () => {
+  const letterContext = useContext(LetterContext);
+  const { loading, letters } = letterContext;
   if (loading) {
     return <Spinner />;
   } else {
@@ -16,11 +18,6 @@ const Letters = ({ letters, loading }) => {
       </div>
     );
   }
-};
-
-Letters.propTypes = {
-  letters: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
 };
 
 const letterStyle = {

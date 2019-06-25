@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Select from '../letters/Select';
 import PropTypes from 'prop-types';
+import LetterContext from '../../context/letters/letterContext';
 
-const NavbarFooter = ({ nextPage, optionOnChange, prevPage }) => {
+const NavbarFooter = ({ optionOnChange, prevPage }) => {
+  const letterContext = useContext(LetterContext);
+
   return (
     <div id='bottom-nav' className='fixed-bottom'>
       <div className='bg-dark py-2'>
@@ -11,7 +14,7 @@ const NavbarFooter = ({ nextPage, optionOnChange, prevPage }) => {
             <button
               type='button'
               className='btn btn-outline-light float-left'
-              onClick={nextPage}
+              onClick={letterContext.next}
             >
               Next
             </button>
@@ -34,7 +37,6 @@ const NavbarFooter = ({ nextPage, optionOnChange, prevPage }) => {
 
 NavbarFooter.propTypes = {
   prevPage: PropTypes.func.isRequired,
-  nextPage: PropTypes.func.isRequired,
   optionOnChange: PropTypes.func.isRequired
 };
 
