@@ -19,8 +19,30 @@ export default (state, action) => {
     case GET_NEXT:
       return {
         ...state,
-        current: state.current + 1,
+        current: action.payload,
         loading: false
+      };
+    case GET_PREV:
+      return {
+        ...state,
+        current: action.payload,
+        loading: false
+      };
+    case GET_OPTIONS:
+      return {
+        ...state,
+        current: action.payload,
+        loading: false
+      };
+    case SET_STORAGE:
+      return {
+        ...state,
+        current: action.payload
+      };
+    case GET_STORAGE:
+      return {
+        ...state,
+        current: action.payload
       };
     case SET_LOADING:
       return {

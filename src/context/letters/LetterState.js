@@ -11,7 +11,6 @@ import {
   GET_STORAGE,
   SET_LOADING
 } from '../types';
-import { async } from 'q';
 
 const LetterState = props => {
   const initialState = {
@@ -25,9 +24,9 @@ const LetterState = props => {
 
   // Init letters
   useEffect(() => {
-    getLetters(initialState.current);
+    getLetters(state.current);
     // eslint-disable-next-line
-  }, [initialState.current]);
+  }, [state.current]);
 
   // Get letters
   const getLetters = async currentIndex => {
@@ -44,24 +43,65 @@ const LetterState = props => {
   };
 
   // Get next page
-  const next = async e => {
+  const next = e => {
+    setLoading();
+
     e.persist();
+    e.target.parentNode.children[1].selectedIndex = state.current + 1;
 
-    await dispatch({
-      type: GET_NEXT
+    dispatch({
+      type: GET_NEXT,
+      payload: state.current + 1
     });
-
-    e.target.parentNode.children[1].selectedIndex = initialState.current;
-    console.log(initialState.current);
   };
 
   // Get previous page
+  const prev = e => {
+    setLoading();
+
+    e.persist();
+    e.target.parentNode.children[1].selectedIndex = state.current - 1;
+
+    dispatch({
+      type: GET_PREV,
+      payload: state.current - 1
+    });
+  };
 
   // Get option page
+  const options = e => {
+    setLoading();
+
+    dispatch({
+      type: GET_OPTIONS,
+      payload: e.nativeEvent.target.selectedIndex
+    });
+  };
 
   // Store Letters to storage
+  const storeLetters = e => {
+    e.preventDefault();
+    localStorage.setItem('pageNumber', JSON.stringify(state.current));
+    dispatch({
+      type: SET_STORAGE,
+      payload: state.current
+    });
+  };
 
   // Get letters from storage
+  const getStorageLetters = e => {
+    e.preventDefault();
+    e.persist();
+
+    // Maybe find an alternative to this?
+    e.nativeEvent.path[4].children[2].children[0].children[0].children[0].children[1].selectedIndex =
+      state.storageCurrent;
+
+    dispatch({
+      type: GET_STORAGE,
+      payload: state.storageCurrent
+    });
+  };
 
   //Set laoding
   const setLoading = () => dispatch({ type: SET_LOADING });
@@ -72,7 +112,11 @@ const LetterState = props => {
         letters: state.letters,
         loading: state.loading,
         getLetters,
-        next
+        next,
+        prev,
+        options,
+        storeLetters,
+        getStorageLetters
       }}
     >
       {props.children}

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import LetterContext from '../../context/letters/letterContext';
 import PropTypes from 'prop-types';
 
-const NavbarHeader = ({ storeLetters, showBookMarked, getLetters }) => {
+const NavbarHeader = ({ showBookMarked }) => {
+  const letterContext = useContext(LetterContext);
+
+  const { storeLetters, getStorageLetters } = letterContext;
+
   return (
     <div className='bg-dark py-3'>
       <div className='container'>
@@ -23,7 +28,7 @@ const NavbarHeader = ({ storeLetters, showBookMarked, getLetters }) => {
           <div
             id='getBookMark'
             className='float-right pr-2'
-            onClick={getLetters}
+            onClick={getStorageLetters}
           >
             getBookmark
           </div>
@@ -34,7 +39,6 @@ const NavbarHeader = ({ storeLetters, showBookMarked, getLetters }) => {
 };
 
 NavbarHeader.propTypes = {
-  storeLetters: PropTypes.func.isRequired,
   showBookMarked: PropTypes.bool.isRequired
 };
 
