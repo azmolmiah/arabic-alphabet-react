@@ -4,7 +4,6 @@ import LetterContext from '../../context/letters/letterContext';
 
 const NavbarFooter = () => {
   const letterContext = useContext(LetterContext);
-
   const { next, prev, options } = letterContext;
 
   return (

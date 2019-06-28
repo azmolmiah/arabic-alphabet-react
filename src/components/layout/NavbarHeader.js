@@ -1,45 +1,37 @@
 import React, { useContext } from 'react';
 import LetterContext from '../../context/letters/letterContext';
-import PropTypes from 'prop-types';
+import Bookmark from '../layout/Bookmark';
 
-const NavbarHeader = ({ showBookMarked }) => {
+const NavbarHeader = () => {
   const letterContext = useContext(LetterContext);
 
-  const { storeLetters, getStorageLetters } = letterContext;
+  const { getStorageLetters } = letterContext;
 
   return (
     <div className='bg-dark py-3'>
       <div className='container'>
         <div className='float-left'>ReactQawaidApp</div>
-        <a href='/'>
-          {showBookMarked ? (
-            <i className='fas fa-bookmark pl-3' onClick={storeLetters} />
-          ) : (
-            <i className='far fa-bookmark pl-3' onClick={storeLetters} />
-          )}
-        </a>
+
+        <Bookmark />
+
         <a href='/'>
           <i id='stopBtn' className='fas fa-stop float-right pt-1' />
         </a>
         <a href='/'>
           <i id='playBtn' className='fas fa-play float-right pt-1 pr-2' />
         </a>
-        <a href='/'>
-          <div
-            id='getBookMark'
-            className='float-right pr-2'
-            onClick={getStorageLetters}
-          >
-            getBookmark
-          </div>
-        </a>
+
+        <div
+          id='getBookMark'
+          style={{ cursor: 'pointer' }}
+          className='float-right pr-2'
+          onClick={getStorageLetters}
+        >
+          getBookmark
+        </div>
       </div>
     </div>
   );
-};
-
-NavbarHeader.propTypes = {
-  showBookMarked: PropTypes.bool.isRequired
 };
 
 export default NavbarHeader;

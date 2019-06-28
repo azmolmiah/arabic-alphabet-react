@@ -3,9 +3,10 @@ import {
   GET_NEXT,
   GET_PREV,
   GET_OPTIONS,
-  SET_STORAGE,
   GET_STORAGE,
-  SET_LOADING
+  SET_LOADING,
+  SET_BOOKMARK,
+  REMOVE_BOOKMARK
 } from '../types';
 
 export default (state, action) => {
@@ -34,15 +35,20 @@ export default (state, action) => {
         current: action.payload,
         loading: false
       };
-    case SET_STORAGE:
-      return {
-        ...state,
-        current: action.payload
-      };
     case GET_STORAGE:
       return {
         ...state,
         current: action.payload
+      };
+    case SET_BOOKMARK:
+      return {
+        ...state,
+        bookmark: action.payload
+      };
+    case REMOVE_BOOKMARK:
+      return {
+        ...state,
+        bookmark: action.payload
       };
     case SET_LOADING:
       return {
