@@ -6,3 +6,5 @@ export const GET_STORAGE = 'GET_STORAGE';
 export const SET_BOOKMARK = 'SET_BOOKMARK';
 export const REMOVE_BOOKMARK = 'SET_BOOKMARK';
 export const SET_LOADING = 'SET_LOADING';
+export const SET_COLUMNS = 'SET_COLUMNS';
+export const SET_HEIGHT = 'SET_HEIGHT';

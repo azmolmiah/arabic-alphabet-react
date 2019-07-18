@@ -8,10 +8,12 @@ option {
 
 .container {
   max-width: 514px;
-  max-height: 300px !important;
+  max-height: 532px !important;
+  overflow: hidden;
 }
 
 img {
+  width: 100% !important;
   border: 1px solid black;
   padding: 0;
   cursor: pointer;

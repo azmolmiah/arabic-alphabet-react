@@ -11,7 +11,9 @@ import {
   GET_STORAGE,
   SET_LOADING,
   SET_BOOKMARK,
-  REMOVE_BOOKMARK
+  REMOVE_BOOKMARK,
+  SET_COLUMNS,
+  SET_HEIGHT
 } from '../types';
 
 const LetterState = props => {
@@ -19,8 +21,10 @@ const LetterState = props => {
     letters: [],
     current: 0,
     storageCurrent: JSON.parse(localStorage.getItem('pageNumber')),
+    gridColumns: 'repeat(5, 1fr)',
+    bookmark: null,
     loading: false,
-    bookmark: null
+    height: '5.53rem'
   };
 
   const [state, dispatch] = useReducer(LetterReducer, initialState);
@@ -46,27 +50,49 @@ const LetterState = props => {
     });
   };
 
-  //  Set Bookmark
-  const setBookmark = () => {
-    dispatch({
-      type: SET_BOOKMARK,
-      payload: 'fas fa-bookmark pl-3'
-    });
-  };
+  // //  Set Bookmark
+  // const setBookmark = async () => {
+  //   await dispatch({
+  //     type: SET_BOOKMARK,
+  //     payload: 'fas fa-bookmark pl-3'
+  //   });
+  // };
 
   // Remove Bookmark
   const removeBookmark = (storageCurrent, current) => {
     if (storageCurrent !== current) {
-      console.log('Bookmark removed...');
       dispatch({
         type: REMOVE_BOOKMARK,
         payload: 'far fa-bookmark pl-3'
       });
     } else {
-      console.log('Bookmark added...');
       dispatch({
         type: SET_BOOKMARK,
         payload: 'fas fa-bookmark pl-3'
+      });
+    }
+  };
+
+  // Change the letter sizes depending on current page
+  const currentPageLetterSize = currentPage => {
+    if (currentPage === 0) {
+      console.log(currentPage);
+      dispatch({
+        type: SET_COLUMNS,
+        payload: 'repeat(5, 1fr)'
+      });
+      dispatch({
+        type: SET_HEIGHT,
+        payload: '5.52rem'
+      });
+    } else if (currentPage === 1 || currentPage === 2) {
+      dispatch({
+        type: SET_COLUMNS,
+        payload: 'repeat(6, 1fr)'
+      });
+      dispatch({
+        type: SET_HEIGHT,
+        payload: '3.5rem'
       });
     }
   };
@@ -80,6 +106,8 @@ const LetterState = props => {
 
     removeBookmark(state.storageCurrent, state.current + 1);
 
+    currentPageLetterSize(state.current + 1);
+
     dispatch({
       type: GET_NEXT,
       payload: state.current + 1
@@ -87,15 +115,17 @@ const LetterState = props => {
   };
 
   // Get previous page
-  const prev = e => {
+  const prev = async e => {
     setLoading();
 
     e.persist();
     e.target.parentNode.children[1].selectedIndex = state.current - 1;
 
-    removeBookmark(state.storageCurrent, state.current - 1);
+    removeBookmark(state.storageCurrent, state.current);
 
-    dispatch({
+    currentPageLetterSize(state.current - 1);
+
+    await dispatch({
       type: GET_PREV,
       payload: state.current - 1
     });
@@ -107,6 +137,8 @@ const LetterState = props => {
 
     removeBookmark(state.storageCurrent, e.nativeEvent.target.selectedIndex);
 
+    currentPageLetterSize(e.nativeEvent.target.selectedIndex);
+
     dispatch({
       type: GET_OPTIONS,
       payload: e.nativeEvent.target.selectedIndex
@@ -114,31 +146,33 @@ const LetterState = props => {
   };
 
   // Store Letters to storage
-  const storeLetters = async () => {
+  const storeLetters = async e => {
+    e.persist();
+    const pageNumber =
+      e.nativeEvent.path[3].children[2].children[0].children[0].children[0]
+        .children[1].value;
+
     await localStorage.setItem('pageNumber', JSON.stringify(state.current));
-    setBookmark();
+
+    removeBookmark(parseInt(pageNumber), state.current);
   };
 
   // Get letters from storage
-  const getStorageLetters = e => {
+  const getStorageLetters = async e => {
     e.persist();
-
-    // Maybe find an alternative to this?
-    // e.nativeEvent.path[4].children[2].children[0].children[0].children[1].selectedIndex =
-    //   state.storageCurrent;
 
     e.nativeEvent.path[3].children[2].children[0].children[0].children[0].children[1].selectedIndex =
       state.storageCurrent;
 
     removeBookmark(state.storageCurrent, state.current);
 
-    dispatch({
+    await dispatch({
       type: GET_STORAGE,
       payload: state.storageCurrent
     });
   };
 
-  //Set laoding
+  //Set loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
   return (
@@ -147,6 +181,9 @@ const LetterState = props => {
         letters: state.letters,
         loading: state.loading,
         bookmark: state.bookmark,
+        current: state.current,
+        gridColumns: state.gridColumns,
+        height: state.height,
         getLetters,
         next,
         prev,

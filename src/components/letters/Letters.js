@@ -7,24 +7,25 @@ import LetterContext from '../../context/letters/letterContext';
 const Letters = () => {
   const letterContext = useContext(LetterContext);
   const { loading, letters } = letterContext;
+
   if (loading) {
     return <Spinner />;
   } else {
     return (
-      <div style={letterStyle}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: letterContext.gridColumns,
+          gridTemplateRows: 'auto',
+          maxWidth: '514px !important'
+        }}
+      >
         {letters.map(letter => {
           return <LetterItem key={uniqid()} letter={letter} />;
         })}
       </div>
     );
   }
-};
-
-const letterStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(5, 1fr)',
-  gridColumnGap: '0',
-  maxWidth: '514px !important'
 };
 
 export default Letters;
