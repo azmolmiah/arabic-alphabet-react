@@ -1,6 +1,10 @@
 {
   "letterspage0": [
     {
+      "name": "firstpagetitle",
+      "image": "firstpagetitle"
+    },
+    {
       "name": "alif",
       "image": "alif"
     },
@@ -124,7 +128,8 @@
 
   "letterspage1": [
     {
-      "image": "pg1b/secondpagetitle"
+      "name": "pg1b/pagetitle",
+      "image": "pg1b/pagetitle"
     },
     {
       "name": "alif",

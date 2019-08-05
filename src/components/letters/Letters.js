@@ -12,14 +12,7 @@ const Letters = () => {
     return <Spinner />;
   } else {
     return (
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: letterContext.gridColumns,
-          gridTemplateRows: 'auto',
-          maxWidth: '514px !important'
-        }}
-      >
+      <div>
         {letters.map(letter => {
           return <LetterItem key={uniqid()} letter={letter} />;
         })}

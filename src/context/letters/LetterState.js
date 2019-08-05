@@ -11,9 +11,7 @@ import {
   GET_STORAGE,
   SET_LOADING,
   SET_BOOKMARK,
-  REMOVE_BOOKMARK,
-  SET_COLUMNS,
-  SET_HEIGHT
+  REMOVE_BOOKMARK
 } from '../types';
 
 const LetterState = props => {
@@ -21,7 +19,6 @@ const LetterState = props => {
     letters: [],
     current: 0,
     storageCurrent: JSON.parse(localStorage.getItem('pageNumber')),
-    gridColumns: 'repeat(5, 1fr)',
     bookmark: null,
     loading: false,
     height: '5.53rem'
@@ -74,28 +71,11 @@ const LetterState = props => {
   };
 
   // Change the letter sizes depending on current page
-  const currentPageLetterSize = currentPage => {
-    if (currentPage === 0) {
-      console.log(currentPage);
-      dispatch({
-        type: SET_COLUMNS,
-        payload: 'repeat(5, 1fr)'
-      });
-      dispatch({
-        type: SET_HEIGHT,
-        payload: '5.52rem'
-      });
-    } else if (currentPage === 1 || currentPage === 2) {
-      dispatch({
-        type: SET_COLUMNS,
-        payload: 'repeat(6, 1fr)'
-      });
-      dispatch({
-        type: SET_HEIGHT,
-        payload: '3.5rem'
-      });
-    }
-  };
+  // const currentPageLetterSize = currentPage => {
+  //   if (currentPage === 0) {
+  //   } else if (currentPage === 1 || currentPage === 2) {
+  //   }
+  // };
 
   // Get next page
   const next = e => {
@@ -106,7 +86,7 @@ const LetterState = props => {
 
     removeBookmark(state.storageCurrent, state.current + 1);
 
-    currentPageLetterSize(state.current + 1);
+    // currentPageLetterSize(state.current + 1);
 
     dispatch({
       type: GET_NEXT,
@@ -123,7 +103,7 @@ const LetterState = props => {
 
     removeBookmark(state.storageCurrent, state.current);
 
-    currentPageLetterSize(state.current - 1);
+    // currentPageLetterSize(state.current - 1);
 
     await dispatch({
       type: GET_PREV,
@@ -137,7 +117,7 @@ const LetterState = props => {
 
     removeBookmark(state.storageCurrent, e.nativeEvent.target.selectedIndex);
 
-    currentPageLetterSize(e.nativeEvent.target.selectedIndex);
+    // currentPageLetterSize(e.nativeEvent.target.selectedIndex);
 
     dispatch({
       type: GET_OPTIONS,
@@ -182,7 +162,6 @@ const LetterState = props => {
         loading: state.loading,
         bookmark: state.bookmark,
         current: state.current,
-        gridColumns: state.gridColumns,
         height: state.height,
         getLetters,
         next,
