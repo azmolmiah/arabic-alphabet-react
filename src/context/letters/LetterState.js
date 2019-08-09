@@ -11,7 +11,9 @@ import {
   GET_STORAGE,
   SET_LOADING,
   SET_BOOKMARK,
-  REMOVE_BOOKMARK
+  REMOVE_BOOKMARK,
+  SET_WIDTH,
+  SET_HEIGHT
 } from '../types';
 
 const LetterState = props => {
@@ -21,7 +23,8 @@ const LetterState = props => {
     storageCurrent: JSON.parse(localStorage.getItem('pageNumber')),
     bookmark: null,
     loading: false,
-    height: '5.53rem'
+    height: null,
+    width: null
   };
 
   const [state, dispatch] = useReducer(LetterReducer, initialState);
@@ -30,6 +33,7 @@ const LetterState = props => {
   useEffect(() => {
     getLetters(state.current);
     removeBookmark(state.storageCurrent, state.current);
+    currentPageLetterSize(state.current);
     // eslint-disable-next-line
   }, [state.current, state.storageCurrent]);
 
@@ -70,12 +74,28 @@ const LetterState = props => {
     }
   };
 
-  // Change the letter sizes depending on current page
-  // const currentPageLetterSize = currentPage => {
-  //   if (currentPage === 0) {
-  //   } else if (currentPage === 1 || currentPage === 2) {
-  //   }
-  // };
+  // Change the letter sizes (exclude titles) depending on current page
+  const currentPageLetterSize = currentPage => {
+    if (currentPage === 0) {
+      dispatch({
+        type: SET_HEIGHT,
+        payload: '5.53rem'
+      });
+      dispatch({
+        type: SET_WIDTH,
+        payload: '6.05rem'
+      });
+    } else if (currentPage === 1 || currentPage === 2) {
+      dispatch({
+        type: SET_HEIGHT,
+        payload: '3.32rem'
+      });
+      dispatch({
+        type: SET_WIDTH,
+        payload: '5.04rem'
+      });
+    }
+  };
 
   // Get next page
   const next = e => {
@@ -163,6 +183,7 @@ const LetterState = props => {
         bookmark: state.bookmark,
         current: state.current,
         height: state.height,
+        letterWidth: state.width,
         getLetters,
         next,
         prev,

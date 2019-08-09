@@ -6,7 +6,9 @@ import {
   GET_STORAGE,
   SET_LOADING,
   SET_BOOKMARK,
-  REMOVE_BOOKMARK
+  REMOVE_BOOKMARK,
+  SET_WIDTH,
+  SET_HEIGHT
 } from '../types';
 
 export default (state, action) => {
@@ -49,6 +51,16 @@ export default (state, action) => {
       return {
         ...state,
         bookmark: action.payload
+      };
+    case SET_WIDTH:
+      return {
+        ...state,
+        width: action.payload
+      };
+    case SET_HEIGHT:
+      return {
+        ...state,
+        height: action.payload
       };
     case SET_LOADING:
       return {

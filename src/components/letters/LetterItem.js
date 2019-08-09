@@ -3,28 +3,30 @@ import LetterContext from '../../context/letters/letterContext';
 
 const LetterItem = ({ letter }) => {
   const letterContext = useContext(LetterContext);
+  const { height, letterWidth, current } = letterContext;
   const images = `img/${letter.image}.png`;
 
-  if (letterContext.letters[0].name === letter.name) {
-    console.log(letterContext.letters[0].name);
+  if (letterContext.letters[0].name === letter.name && current !== 2) {
+    // If page title
     return (
       <img
         src={images}
         alt=''
         style={{
-          height: letterContext.height,
+          height: height,
           width: '100%'
         }}
       />
     );
   } else {
+    // If Letters
     return (
       <img
         src={images}
         alt=''
         style={{
-          height: letterContext.height,
-          width: '6.05rem'
+          height: height,
+          width: letterWidth
         }}
       />
     );
