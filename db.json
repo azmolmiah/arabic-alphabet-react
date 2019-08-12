@@ -1,8 +1,8 @@
 {
   "letterspage0": [
     {
-      "name": "firstpagetitle",
-      "image": "firstpagetitle"
+      "name": "pagetitle",
+      "image": "pagetitle"
     },
     {
       "name": "alif",
@@ -128,7 +128,7 @@
 
   "letterspage1": [
     {
-      "name": "pg1b/pagetitle",
+      "name": "pagetitle",
       "image": "pg1b/pagetitle"
     },
     {
@@ -645,7 +645,8 @@
       "image": "pg3/thaameemthaa"
     },
     {
-      "image": "pg3/thirdpagetitle"
+      "name": "pagetitle",
+      "image": "pg3/pagetitle"
     },
     {
       "name": "aliflaammeem",

@@ -5,6 +5,7 @@ const Select = ({ optionOnChange }) => {
   for (let i = 0; i <= 26; i++) {
     options.push(i);
   }
+
   return (
     <select
       className='form-control mx-auto'

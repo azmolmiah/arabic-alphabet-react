@@ -83,7 +83,7 @@ const LetterState = props => {
       });
       dispatch({
         type: SET_WIDTH,
-        payload: '6.05rem'
+        payload: '20%'
       });
     } else if (currentPage === 1 || currentPage === 2) {
       dispatch({
@@ -92,13 +92,18 @@ const LetterState = props => {
       });
       dispatch({
         type: SET_WIDTH,
-        payload: '5.04rem'
+        payload: '16.66%'
+      });
+    } else if (currentPage === 3) {
+      dispatch({
+        type: SET_WIDTH,
+        payload: '20%'
       });
     }
   };
 
   // Get next page
-  const next = e => {
+  const next = async e => {
     setLoading();
 
     e.nativeEvent.target.parentNode.children[1].selectedIndex =
@@ -108,9 +113,9 @@ const LetterState = props => {
 
     // currentPageLetterSize(state.current + 1);
 
-    dispatch({
+    await dispatch({
       type: GET_NEXT,
-      payload: state.current + 1
+      payload: state.current
     });
   };
 
@@ -127,7 +132,7 @@ const LetterState = props => {
 
     await dispatch({
       type: GET_PREV,
-      payload: state.current - 1
+      payload: state.current
     });
   };
 
