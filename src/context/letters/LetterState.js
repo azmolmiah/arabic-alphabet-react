@@ -96,6 +96,10 @@ const LetterState = props => {
       });
     } else if (currentPage === 3) {
       dispatch({
+        type: SET_HEIGHT,
+        payload: '4.15rem'
+      });
+      dispatch({
         type: SET_WIDTH,
         payload: '20%'
       });

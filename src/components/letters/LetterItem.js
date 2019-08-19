@@ -5,10 +5,10 @@ const LetterItem = ({ letter }) => {
   const letterContext = useContext(LetterContext);
   const { height, letterWidth, current } = letterContext;
   const images = `img/${letter.image}.png`;
-  const secondHalfpg3 = letterContext.letters.slice(14, 27);
 
   if (letter.name === 'pagetitle' && current !== 2) {
     // If page title
+    // Hint: try and see if an object can be passed isntead of all these if statements?
     return (
       <img
         src={images}
@@ -34,7 +34,10 @@ const LetterItem = ({ letter }) => {
         }}
       />
     );
-  } else if (letter.name === 'ckaafhayaaaynswaad') {
+  } else if (
+    letter.name === 'ckaafhayaaaynswaad' ||
+    letter.name === 'hameemayngseenckaaf'
+  ) {
     return (
       <img
         src={images}
@@ -45,8 +48,30 @@ const LetterItem = ({ letter }) => {
         }}
       />
     );
-  } else if (current === 3) {
-    console.log(secondHalfpg3);
+  } else if (
+    (letterContext.letters[14].name === letter.name && current === 3) ||
+    (letterContext.letters[15].name === letter.name && current === 3) ||
+    (letterContext.letters[16].name === letter.name && current === 3) ||
+    (letterContext.letters[17].name === letter.name && current === 3) ||
+    (letterContext.letters[19].name === letter.name && current === 3) ||
+    (letterContext.letters[20].name === letter.name && current === 3) ||
+    (letterContext.letters[21].name === letter.name && current === 3) ||
+    (letterContext.letters[22].name === letter.name && current === 3) ||
+    (letterContext.letters[23].name === letter.name && current === 3) ||
+    (letterContext.letters[24].name === letter.name && current === 3) ||
+    (letterContext.letters[26].name === letter.name && current === 3) ||
+    (letterContext.letters[27].name === letter.name && current === 3)
+  ) {
+    return (
+      <img
+        src={images}
+        alt=''
+        style={{
+          height: height,
+          width: '25%'
+        }}
+      />
+    );
   } else {
     // If Letters
 
