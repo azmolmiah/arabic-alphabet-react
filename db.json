@@ -13,7 +13,7 @@
       "image": "baa"
     },
     {
-      "name": "thaa",
+      "name": "tha",
       "image": "tha"
     },
     {
@@ -29,27 +29,27 @@
       "image": "haa"
     },
     {
-      "name": "khaa",
+      "name": "kha",
       "image": "kha"
     },
     {
-      "name": "Daal",
+      "name": "daal",
       "image": "daal"
     },
     {
-      "name": "Zsaal",
+      "name": "zsaal",
       "image": "zsaal"
     },
     {
-      "name": "Raa",
+      "name": "raa",
       "image": "raa"
     },
     {
-      "name": "Zaa",
+      "name": "zaa",
       "image": "zaa"
     },
     {
-      "name": "Seen",
+      "name": "seen",
       "image": "seen"
     },
     {
@@ -57,71 +57,71 @@
       "image": "sheen"
     },
     {
-      "name": "Swaad",
+      "name": "swad",
       "image": "swad"
     },
     {
-      "name": "Dwaad",
+      "name": "dwad",
       "image": "dwad"
     },
     {
-      "name": "Thwaa",
+      "name": "thwa",
       "image": "thwa"
     },
     {
-      "name": "Zwaa",
+      "name": "zwa",
       "image": "zwa"
     },
     {
-      "name": "Ghayn",
+      "name": "Ghayn(Sound is needed)",
       "image": "ayn"
     },
     {
-      "name": "Ghayn",
+      "name": "ghayn",
       "image": "ghayn"
     },
     {
-      "name": "Faa",
+      "name": "fa",
       "image": "fa"
     },
     {
-      "name": "Ckaff",
-      "image": "caaf"
+      "name": "caf",
+      "image": "caf"
     },
     {
-      "name": "Kaaf",
+      "name": "kaf",
       "image": "kaf"
     },
     {
-      "name": "Laam",
+      "name": "laam",
       "image": "laam"
     },
     {
-      "name": "Meem",
+      "name": "meem",
       "image": "meem"
     },
     {
-      "name": "Noon",
+      "name": "noon",
       "image": "noon"
     },
     {
-      "name": "Noon",
-      "image": "woaw"
+      "name": "wow(Needs soundrecording)",
+      "image": "wow"
     },
     {
-      "name": "haa",
+      "name": "ha needs recording",
       "image": "ha"
     },
     {
-      "name": "Hamza",
+      "name": "hamza",
       "image": "hamza"
     },
     {
-      "name": "Yaa",
+      "name": "yaa",
       "image": "yaa"
     },
     {
-      "name": "Yaa",
+      "name": "yaa",
       "image": "ya"
     }
   ],

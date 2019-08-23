@@ -58,6 +58,9 @@ const LetterState = props => {
   //     payload: 'fas fa-bookmark pl-3'
   //   });
   // };
+  //
+
+  // Onclick Individual Letter Sound
 
   // Remove Bookmark
   const removeBookmark = (storageCurrent, current) => {
@@ -79,7 +82,7 @@ const LetterState = props => {
     if (currentPage === 0) {
       dispatch({
         type: SET_HEIGHT,
-        payload: '5.53rem'
+        payload: '4.75rem'
       });
       dispatch({
         type: SET_WIDTH,
