@@ -62,6 +62,7 @@ export default (state, action) => {
         ...state,
         height: action.payload
       };
+
     case SET_LOADING:
       return {
         ...state,

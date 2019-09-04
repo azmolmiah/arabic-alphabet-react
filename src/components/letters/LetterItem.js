@@ -6,6 +6,7 @@ const LetterItem = ({ letter }) => {
   const { height, letterWidth, current, letters } = letterContext;
   const images = `img/${letter.image}.png`;
 
+  // Onclick Individual Letter Sound
   const onClick = e => {
     const clickSound = new Audio();
     // Get id name of each sound image thats outputed

@@ -51,16 +51,19 @@ const LetterState = props => {
     });
   };
 
-  // //  Set Bookmark
-  // const setBookmark = async () => {
-  //   await dispatch({
-  //     type: SET_BOOKMARK,
-  //     payload: 'fas fa-bookmark pl-3'
-  //   });
+  // Get next letter sound in loop
+  // const nextSound = loopSound => {
+  //   if (state.playIndex === state.letters.length) {
+  //     loopSound.pause();
+  //   } else {
+  //     dispatch({
+  //       type: SET_PLAYINDEX
+  //     });
+  //     loopSound.src = `audio/${state.letters[state.playIndex].name}.mp3`;
+  //     loopSound.play();
+  //     console.log(state.playIndex);
+  //   }
   // };
-  //
-
-  // Onclick Individual Letter Sound
 
   // Remove Bookmark
   const removeBookmark = (storageCurrent, current) => {
@@ -149,15 +152,13 @@ const LetterState = props => {
 
     removeBookmark(state.storageCurrent, e.nativeEvent.target.selectedIndex);
 
-    // currentPageLetterSize(e.nativeEvent.target.selectedIndex);
-
     dispatch({
       type: GET_OPTIONS,
       payload: e.nativeEvent.target.selectedIndex
     });
   };
 
-  // Store Letters to storage
+  // Store Letters to storage - put this in navbar header does not have dispatch
   const storeLetters = async e => {
     e.persist();
     const pageNumber =
