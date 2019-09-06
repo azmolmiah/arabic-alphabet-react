@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import Bookmark from '../bookmark/Bookmark';
 import LetterContext from '../../context/letters/letterContext';
 
 const NavbarHeader = () => {
@@ -7,18 +8,17 @@ const NavbarHeader = () => {
 
   const letterContext = useContext(LetterContext);
 
-  const { getStorageLetters, storeLetters, bookmark, letters } = letterContext;
+  const { getStorageLetters, letters } = letterContext;
 
-  // Get next letter sound in loop
-  const nextSound = async () => {
-    if (index !== letters.length) {
-      await setIndex(index => index + 1);
-      loopSound.src = `audio/${letters[index].name}.mp3`;
-      loopSound.play();
-    } else {
-      loopSound.pause();
-    }
-  };
+  // Get next letter sound in loop -> try and put this back in the reducer going to need it for saving the index
+  // const nextSound = () => {
+  //   for (let i = index; i <= letters.length; i++) {
+  //     setIndex(i);
+  //     loopSound.src = `audio/${letters[index].name}.mp3`;
+  //     console.log(index);
+  //     loopSound.play();
+  //   }
+  // };
 
   // Init loop to play all letters
   // const initLoop = () => {
@@ -34,11 +34,7 @@ const NavbarHeader = () => {
       <div className='container'>
         <div className='float-left'>ReactQawaidApp</div>
 
-        <i
-          className={bookmark}
-          style={{ cursor: 'pointer' }}
-          onClick={storeLetters}
-        />
+        <Bookmark />
 
         <a href='/' style={{ cursor: 'pointer' }}>
           <i className='fas fa-stop float-right pt-1' />
@@ -46,7 +42,7 @@ const NavbarHeader = () => {
         <div
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            loopSound.paused ? nextSound() : loopSound.pause();
+            // loopSound.paused ? nextSound() : loopSound.pause();
           }}
         >
           <i className='fas fa-play float-right pt-1 pr-2' />

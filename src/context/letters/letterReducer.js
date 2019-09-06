@@ -43,10 +43,6 @@ export default (state, action) => {
         current: action.payload
       };
     case SET_BOOKMARK:
-      return {
-        ...state,
-        bookmark: action.payload
-      };
     case REMOVE_BOOKMARK:
       return {
         ...state,

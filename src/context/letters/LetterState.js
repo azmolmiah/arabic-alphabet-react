@@ -51,20 +51,6 @@ const LetterState = props => {
     });
   };
 
-  // Get next letter sound in loop
-  // const nextSound = loopSound => {
-  //   if (state.playIndex === state.letters.length) {
-  //     loopSound.pause();
-  //   } else {
-  //     dispatch({
-  //       type: SET_PLAYINDEX
-  //     });
-  //     loopSound.src = `audio/${state.letters[state.playIndex].name}.mp3`;
-  //     loopSound.play();
-  //     console.log(state.playIndex);
-  //   }
-  // };
-
   // Remove Bookmark
   const removeBookmark = (storageCurrent, current) => {
     if (storageCurrent !== current) {
@@ -158,18 +144,6 @@ const LetterState = props => {
     });
   };
 
-  // Store Letters to storage - put this in navbar header does not have dispatch
-  const storeLetters = async e => {
-    e.persist();
-    const pageNumber =
-      e.nativeEvent.path[3].children[2].children[0].children[0].children[0]
-        .children[1].value;
-
-    await localStorage.setItem('pageNumber', JSON.stringify(state.current));
-
-    removeBookmark(parseInt(pageNumber), state.current);
-  };
-
   // Get letters from storage
   const getStorageLetters = async e => {
     e.persist();
@@ -201,7 +175,7 @@ const LetterState = props => {
         next,
         prev,
         options,
-        storeLetters,
+        removeBookmark,
         getStorageLetters
       }}
     >
