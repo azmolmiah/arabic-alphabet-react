@@ -43,7 +43,7 @@ const LetterState = props => {
     setLoading();
 
     const res = await axios.get(
-      `http://localhost:3001/letterspage${currentIndex}`
+      `https://arabic-alphabet-api.herokuapp.com/letterspage${currentIndex}`
     );
 
     dispatch({
