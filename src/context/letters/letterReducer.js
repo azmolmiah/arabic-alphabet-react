@@ -22,13 +22,13 @@ export default (state, action) => {
     case GET_NEXT:
       return {
         ...state,
-        current: action.payload + 1,
+        current: state.current + action.payload,
         loading: false
       };
     case GET_PREV:
       return {
         ...state,
-        current: action.payload - 1,
+        current: state.current - action.payload,
         loading: false
       };
     case GET_OPTIONS:

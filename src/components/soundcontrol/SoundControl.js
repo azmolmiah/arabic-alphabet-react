@@ -1,41 +1,38 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
+import LetterContext from '../../context/letters/letterContext';
 
 const SoundControl = () => {
-  const loopSound = new Audio();
+  const sound = new Audio();
   const [index, setIndex] = useState(0);
 
-  // Get next letter sound in loop -> try and put this back in the reducer going to need it for saving the index
-  // const nextSound = () => {
-  //   for (let i = index; i <= letters.length; i++) {
-  //     setIndex(i);
-  //     loopSound.src = `audio/${letters[index].name}.mp3`;
-  //     console.log(index);
-  //     loopSound.play();
-  //   }
-  // };
+  const letterContext = useContext(LetterContext);
 
-  // Init loop to play all letters
-  // const initLoop = () => {
-  //   if (loopSound.paused) {
-  //     nextSound();
-  //   } else {
-  //     loopSound.pause();
-  //   }
-  // };
+  const { letters } = letterContext;
+
+  // Get next letter sound in loop, do while causing infite loop and not incrementing.
+  const nextSound = () => {
+    if (index !== letters.length) {
+      setIndex(index + 1);
+      sound.src = `audio/${letters[index].name}.mp3`;
+      sound.play();
+    } else {
+      sound.pause();
+    }
+  };
 
   return (
     <Fragment>
-      <a href='/' style={{ cursor: 'pointer' }}>
-        <i className='fas fa-stop float-right pt-1' />
+      <a href='#!' style={{ cursor: 'pointer' }}>
+        <div className='float-right'>reset</div>
       </a>
       <a
-        href='/'
+        href='#!'
         style={{ cursor: 'pointer' }}
         onClick={() => {
-          // loopSound.paused ? nextSound() : loopSound.pause();
+          sound.paused ? nextSound() : sound.paused();
         }}
       >
-        <i className='fas fa-play float-right pt-1 pr-2' />
+        <div className='float-right pr-2'>nextSound</div>
       </a>
     </Fragment>
   );

@@ -24,7 +24,8 @@ const LetterState = props => {
     bookmark: null,
     loading: false,
     height: null,
-    width: null
+    width: null,
+    soundIndex: 0
   };
 
   const [state, dispatch] = useReducer(LetterReducer, initialState);
@@ -105,13 +106,11 @@ const LetterState = props => {
     e.nativeEvent.target.parentNode.children[1].selectedIndex =
       state.current + 1;
 
-    removeBookmark(state.storageCurrent, state.current + 1);
-
-    // currentPageLetterSize(state.current + 1);
+    removeBookmark(state.storageCurrent, state.current);
 
     await dispatch({
       type: GET_NEXT,
-      payload: state.current
+      payload: 1
     });
   };
 
@@ -124,11 +123,9 @@ const LetterState = props => {
 
     removeBookmark(state.storageCurrent, state.current);
 
-    // currentPageLetterSize(state.current - 1);
-
     await dispatch({
       type: GET_PREV,
-      payload: state.current
+      payload: 1
     });
   };
 
