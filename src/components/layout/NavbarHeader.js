@@ -10,7 +10,7 @@ const NavbarHeader = () => {
   return (
     <div className='bg-dark py-3'>
       <div className='container'>
-        <div className='float-left'>ReactQawaidApp</div>
+        <div className='float-left'>ReactArabicAlphabet</div>
 
         <Bookmark />
 
